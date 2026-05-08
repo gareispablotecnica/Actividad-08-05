@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="es">
+{% load static %}
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game of Thrones - Cuando Juegas al Juego de Tronos</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Crimson+Text:ital,wght@0,400;0,600;1,400&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav id="navbar">
+        <a href="#" class="logo">WESTEROS</a>
+        <ul class="nav-links" id="navLinks">
+            <li><a href="#inicio">Inicio</a></li>
+            <li><a href="#casas">Casas</a></li>
+
+            {% if user.is_authenticated %}
+            <form action="{% url 'logout' %}" method="post">
+                {% csrf_token %}
+                <input type="submit" value="Logout" class="btn btn-primary">
+                <a href="">@{{user.username}}</a>
+            </form>
+            {% else %}
+            <a href="{% url 'login' %}" class="btn btn-primary">Login</a>
+            {% endif %}
+            <li><a href="{% url 'agregar' %}">Producto</a></li>
+        </ul>
+        <div class="menu-toggle" id="menuToggle">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </nav>
+
+    {% block cuerpo %}
+    <!-- Hero Section -->
+    <section class="hero" id="inicio">
+        <div class="hero-bg"></div>
+        <div class="hero-content">
+            <p class="hero-subtitle">Bienvenido a</p>
+            <h1 class="hero-title">Game of <span>Thrones</span></h1>
+            <p class="hero-quote">"Cuando juegas al juego de tronos, ganas o mueres. No hay termino medio."</p>
+            <a href="#casas" class="hero-btn">Explorar Westeros</a>
+        </div>
+        <div class="scroll-indicator">
+            <span></span>
+        </div>
+    </section>
+
+    <!-- Houses Section -->
+    <section class="houses" id="casas">
+        <div class="section-header">
+            <h2 class="section-title">Las Grandes <span>Casas</span></h2>
+            <div class="section-line"></div>
+        </div>
+        <div class="houses-grid">
+            <div class="house-card">
+                <div class="house-sigil">🐺</div>
+                <h3 class="house-name">Casa Stark</h3>
+                <p class="house-motto">"Se Acerca el Invierno"</p>
+                <p class="house-desc">Guardianes del Norte desde tiempos inmemoriales, los Stark gobiernan desde
+                    Invernalia con honor y lealtad inquebrantables.</p>
+            </div>
+            <div class="house-card">
+                <div class="house-sigil">🦁</div>
+                <h3 class="house-name">Casa Lannister</h3>
+                <p class="house-motto">"Oye Mi Rugido"</p>
+                <p class="house-desc">Los Lannister de Roca Casterly son la casa mas rica de los Siete Reinos, conocidos
+                    por su astucia y ambicion sin limites.</p>
+            </div>
+            <div class="house-card">
+                <div class="house-sigil">🐉</div>
+                <h3 class="house-name">Casa Targaryen</h3>
+                <p class="house-motto">"Fuego y Sangre"</p>
+                <p class="house-desc">Descendientes de la antigua Valyria, los Targaryen conquistaron Westeros montados
+                    en dragones y forjaron el Trono de Hierro.</p>
+            </div>
+            <div class="house-card">
+                <div class="house-sigil">🦌</div>
+                <h3 class="house-name">Casa Baratheon</h3>
+                <p class="house-motto">"Nuestra es la Furia"</p>
+                <p class="house-desc">Guerreros feroces de las Tierras de la Tormenta, los Baratheon reclamaron el trono
+                    tras la caida de los Targaryen.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Locations Section -->
+    <section class="locations" id="lugares">
+        <div class="section-header">
+            <h2 class="section-title">Lugares <span>Legendarios</span></h2>
+            <div class="section-line"></div>
+        </div>
+        <div class="locations-container">
+            <div class="location-item">
+                <div class="location-image">
+                    <img src="{% static 'src/winterfell.jpg' %}" alt="Invernalia cubierta de nieve">
+                </div>
+                <div class="location-content">
+                    <h3>Invernalia</h3>
+                    <p>La antigua fortaleza de los Stark, construida sobre aguas termales que la mantienen calida
+                        incluso en los inviernos mas crudos. Sus murallas han resistido miles de anos y sus criptas
+                        guardan los secretos de los Reyes del Norte.</p>
+                    <a href="#" class="location-btn">Descubrir mas →</a>
+                </div>
+            </div>
+            <div class="location-item">
+                <div class="location-image">
+                    <img src="{% static 'src/kings-landing.jpg' %}" alt="Desembarco del Rey al atardecer">
+                </div>
+                <div class="location-content">
+                    <h3>Desembarco del Rey</h3>
+                    <p>La capital de los Siete Reinos, donde el Trono de Hierro aguarda a quien sea lo suficientemente
+                        audaz para reclamarlo. Una ciudad de intrigas, traiciones y poder absoluto bajo la sombra de la
+                        Fortaleza Roja.</p>
+                    <a href="#" class="location-btn">Descubrir mas →</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section class="gallery" id="galeria">
+        <div class="section-header">
+            <h2 class="section-title">Galeria de <span>Westeros</span></h2>
+            <div class="section-line"></div>
+        </div>
+        <div class="gallery-grid">
+            <div class="gallery-item">
+                <img src="{% static 'src/kings-landing.jpg' %}" alt="Dragon volando sobre castillo">
+                <div class="gallery-overlay">
+                    <h4>Los Dragones Targaryen</h4>
+                </div>
+            </div>
+            <div class="gallery-item">
+                <img src="{% static 'src/iron-throne.jpg' %}" alt="Trono de Hierro">
+                <div class="gallery-overlay">
+                    <h4>El Trono de Hierro</h4>
+                </div>
+            </div>
+            <div class="gallery-item">
+                <img src="{% static 'src/warrior.jpg' %}" alt="Guerrero medieval">
+                <div class="gallery-overlay">
+                    <h4>Los Caballeros</h4>
+                </div>
+            </div>
+            <div class="gallery-item">
+                <img src="{% static 'src/winterfell.jpg' %}" alt="Invernalia">
+                <div class="gallery-overlay">
+                    <h4>El Norte</h4>
+                </div>
+            </div>
+            <div class="gallery-item">
+                <img src="{% static 'src/kings-landing.jpg' %}" alt="Desembarco del Rey">
+                <div class="gallery-overlay">
+                    <h4>La Capital</h4>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Quote Section -->
+    <section class="quote-section">
+        <div class="quote-content">
+            <div class="quote-mark">"</div>
+            <p class="quote-text">Un Lannister siempre paga sus deudas.</p>
+            <p class="quote-author">— Casa Lannister</p>
+        </div>
+    </section>
+
+    <!-- Newsletter Section -->
+    <section class="newsletter">
+        <div class="newsletter-content">
+            <h3>Unete a la Guardia de la Noche</h3>
+            <p>Suscribete para recibir las ultimas noticias del reino y no perderte ninguna actualizacion de Westeros.
+            </p>
+            <form class="newsletter-form" id="newsletterForm">
+                <input type="email" placeholder="Tu correo electronico" required>
+                <button type="submit">Suscribirse</button>
+            </form>
+        </div>
+    </section>
+
+    {% endblock %}
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-logo">WESTEROS</div>
+            <ul class="footer-links">
+                <li><a href="#inicio">Inicio</a></li>
+                <li><a href="#casas">Casas</a></li>
+                <li><a href="#lugares">Lugares</a></li>
+                <li><a href="#galeria">Galeria</a></li>
+            </ul>
+            <div class="footer-social">
+                <a href="#" aria-label="Facebook">f</a>
+                <a href="#" aria-label="Twitter">X</a>
+                <a href="#" aria-label="Instagram">in</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2026 Westeros Fan Site. Todos los derechos reservados a HBO.</p>
+        </div>
+    </footer>
+
+    <script src="{% static 'Script/main.js' %}"></script>
+</body>
+
+</html>
