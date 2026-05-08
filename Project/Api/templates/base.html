@@ -29,7 +29,11 @@
             {% else %}
             <a href="{% url 'login' %}" class="btn btn-primary">Login</a>
             {% endif %}
+
+            {% if perms.Api.add_producto %}
             <li><a href="{% url 'agregar' %}">Producto</a></li>
+            {% endif %}
+
         </ul>
         <div class="menu-toggle" id="menuToggle">
             <span></span>

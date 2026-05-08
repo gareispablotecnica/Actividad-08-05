@@ -1,11 +1,11 @@
 from django.shortcuts import render
 from .forms import *
-
+from django.contrib.auth.decorators import permission_required
 # Create your views here.
 def Home(request):
     return render (request,'Base.html')
 
-
+@permission_required('Api.add_producto')
 def NuevoProductos(request):
     data={
         'Formulario': FormularioProductos()
