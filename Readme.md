@@ -1,6 +1,6 @@
-#  API - Game Landing Web
+#  API - Game of Throne  Web
 
-Proyecto desarrollado con **Django**, orientado a una landing page temática de fantasía, utilizando estructura MVC de Django, archivos estáticos y plantillas HTML.
+Proyecto desarrollado con **Django**, orientado a una webpage con  temática de Juegos de Tronos, utilizando estructura MVC de Django, archivos estáticos y plantillas HTML.
 
 ---
 
